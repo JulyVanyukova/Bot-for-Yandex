@@ -1,0 +1,24 @@
+let keywords = ["Розы","Георгины","Тюльпаны","Ромашки","Васильки"];
+let keyword = keywords[Math.floor(Math.random()*keywords.length)];
+document.getElementsByName('text')[0].value = keyword;
+let btn = document.getElementsByClassName('button mini-suggest__button button_theme_search button_size_search i-bem button_js_inited')[0];
+
+let btnNext = document.getElementsByClassName('link link_theme_none link_target_serp pager__item pager__item_kind_next i-bem link_js_inited')[0];
+
+if (btn != undefined){
+    btn.click();
+}else{
+    let links = document.links;
+    let goToTheNextPage = true;
+    let currentPage = document.getElementsByClassName ('pager__item pager__item_current_yes pager__item_kind_page')[0].innerText;
+    for(let i= 0; i<links.length; i++){
+    let link = links[i];
+    if (link.href.indexOf('rastenievod.com/piony')!= -1){
+        link.click();
+        goToTheNextPage = false;
+        break;
+    }
+  }
+  if ( currentPage>5) location.href = "https://yandex.ru/";
+  else if(goToTheNextPage) btnNext.click();
+ }
